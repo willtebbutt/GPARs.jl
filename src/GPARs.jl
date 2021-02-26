@@ -1,5 +1,11 @@
 module GPARs
 
-# Write your package code here.
+using LinearAlgebra
+using Stheno
+using Random
+
+include("gpar.jl")
+
+export GPAR
 
 end

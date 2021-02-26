@@ -16,10 +16,14 @@
     # Check that logpdf returns something, and said this is real number.
     @test logpdf(f(x, Σs), y) isa Real
 
-    # Check that the posterior is another GPAR, and that (posterior) samples
-    # can be generated, and log posterior predictive probabilities computed.
+    # Check that the posterior is another GPAR.
     f_post = posterior(f(x, Σs), y)
     @test f_post isa GPAR
-    @test size(rand(rng, f_post(x, Σs))) == size(y)
-    @test logpdf(f_post(x, Σs)) isa Real
+
+    # Check that quantities can be computed under the posterior.
+    N_pred = 5
+    x_pred = ColVecs(randn(rng, D_in, N_pred))
+    y_post = rand(rng, f_post(x_pred, Σs))
+    @test size(rand(rng, f_post(x_pred, Σs))) == size(y_post)
+    @test logpdf(f_post(x_pred, Σs), y_post) isa Real
 end

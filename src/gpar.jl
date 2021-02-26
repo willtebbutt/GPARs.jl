@@ -33,8 +33,8 @@ function Stheno.logpdf(fx::FiniteGPAR, y::ColVecs)
 
     l = logpdf(f.fs[1](ColVecs(X), Σs[1]), Y[1, :])
     for p in 2:dim_out(f)
-        x_p = ColVecs(vcat(X, Y[1:p, :]))
-        l += logpdf(f.fs[2](x_p, Σs[p]), Y[p, :])
+        x_p = ColVecs(vcat(X, Y[1:p-1, :]))
+        l += logpdf(f.fs[p](x_p, Σs[p]), Y[p, :])
     end
     return l
 end
@@ -42,7 +42,9 @@ end
 function posterior(fx::FiniteGPAR, y::ColVecs)
     f, X, Σs = extract_data(fx)
     Y = y.X
-    return map(enumerate(f.fs)) do (p, f_p)
-        return p
+    fs_post = map(enumerate(f.fs)) do (p, f_p)
+        x_p = ColVecs(vcat(X, Y[1:p-1, :]))
+        return f_p | (f_p(x_p, Σs[p]) ← Y[p, :])
     end
+    return GPAR(fs_post)
 end

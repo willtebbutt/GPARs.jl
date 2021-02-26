@@ -46,3 +46,6 @@ x_post = ColVecs(randn(2, 15))
 y_post = rand(rng, f_post(x, Σs))
 logpdf(f_post(x, Σs), y_post)
 ```
+
+Using this functionality, you have everything you need to do learning using standard
+off-the-shelf functionality ([Zygote.jl](https://github.com/FluxML/Zygote.jl/) to get gradients, [Optim.jl](https://github.com/JuliaNLSolvers/Optim.jl) to get optimisers such as (L-)BFGS, and [ParameterHandling.jl](https://github.com/invenia/ParameterHandling.jl/) to make dealing with large numbers of model parameters more straightforward.

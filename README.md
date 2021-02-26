@@ -21,7 +21,9 @@ using Stheno
 f = GPAR([GP(EQ(), GPC()) for _ in 1:3])
 
 # Specify inputs. `ColVecs` says "interpret this matrix as a vector of column-vecrors".
-# Inputs are 2 dimensional, and there are 10 of them.
+# Inputs are 2 dimensional, and there are 10 of them. This means that the pth GP in f
+# will receive (2 + (p-1))-dimensional inputs, of which the first 2 dimensions comprise
+# x, and the remaining the outputs of the first p-1 GPs in f.
 x = ColVecs(randn(2, 10))
 
 # Specify noise variance for each output.

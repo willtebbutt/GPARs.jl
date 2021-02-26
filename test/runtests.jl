@@ -1,6 +1,10 @@
 using GPARs
+using Random
+using Stheno
 using Test
 
+using GPARs: posterior
+
 @testset "GPARs.jl" begin
-    # Write your tests here.
+    include("gpar.jl")
 end

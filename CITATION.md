@@ -1,0 +1,16 @@
+@InProceedings{pmlr-v89-requeima19a,
+    title = {The Gaussian Process Autoregressive Regression Model (GPAR)},
+    author = {Requeima, James and Tebbutt, William and Bruinsma, Wessel and Turner, Richard E.},
+    booktitle = {Proceedings of Machine Learning Research},
+    pages = {1860--1869},
+    year = {2019},
+    editor = {Kamalika Chaudhuri and Masashi Sugiyama},
+    volume = {89},
+    series = {Proceedings of Machine Learning Research},
+    address = {},
+    month = {16--18 Apr},
+    publisher = {PMLR},
+    pdf = {http://proceedings.mlr.press/v89/requeima19a/requeima19a.pdf},
+    url = {http://proceedings.mlr.press/v89/requeima19a.html},
+    abstract = {Multi-output regression models must exploit dependencies between outputs to maximise predictive performance. The application of Gaussian processes (GPs) to this setting typically yields models that are computationally demanding and have limited representational power. We present the Gaussian Process Autoregressive Regression (GPAR) model, a scalable multi-output GP model that is able to capture nonlinear, possibly input-varying, dependencies between outputs in a simple and tractable way: the product rule is used to decompose the joint distribution over the outputs into a set of conditionals, each of which is modelled by a standard GP. GPAR’s efficacy is demonstrated on a variety of synthetic and real-world problems, outperforming existing GP models and achieving state-of-the-art performance on established benchmarks.}
+}

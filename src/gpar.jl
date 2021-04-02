@@ -3,19 +3,19 @@
 
 
 """
-struct GPAR{Tfs} <: Stheno.AbstractGP # this is a bit of a hack, as a GPAR isn't a GP.
+struct GPAR{Tfs} <: AbstractGPs.AbstractGP # this is a bit of a hack, as a GPAR isn't a GP.
     fs::Tfs
 end
 
 dim_out(f::GPAR) = length(f.fs)
 
-(f::GPAR)(x::ColVecs, Σs) = Stheno.FiniteGP(f, x, Σs)
+(f::GPAR)(x::ColVecs, Σs) = AbstractGPs.FiniteGP(f, x, Σs)
 
-const FiniteGPAR = Stheno.FiniteGP{<:GPAR}
+const FiniteGPAR = AbstractGPs.FiniteGP{<:GPAR}
 
 extract_data(fx::FiniteGPAR) = fx.f, fx.x.X, fx.Σy
 
-function Stheno.rand(rng::AbstractRNG, fx::FiniteGPAR)
+function AbstractGPs.rand(rng::AbstractRNG, fx::FiniteGPAR)
     f, X, Σs = extract_data(fx)
     Y = Matrix{Float64}(undef, 0, length(fx.x))
 
@@ -27,7 +27,7 @@ function Stheno.rand(rng::AbstractRNG, fx::FiniteGPAR)
     return ColVecs(Y)
 end
 
-function Stheno.logpdf(fx::FiniteGPAR, y::ColVecs)
+function AbstractGPs.logpdf(fx::FiniteGPAR, y::ColVecs)
     f, X, Σs = extract_data(fx)
     Y = y.X
 
@@ -39,12 +39,12 @@ function Stheno.logpdf(fx::FiniteGPAR, y::ColVecs)
     return l
 end
 
-function posterior(fx::FiniteGPAR, y::ColVecs)
+function AbstractGPs.posterior(fx::FiniteGPAR, y::ColVecs)
     f, X, Σs = extract_data(fx)
     Y = y.X
     fs_post = map(enumerate(f.fs)) do (p, f_p)
         x_p = ColVecs(vcat(X, Y[1:p-1, :]))
-        return f_p | (f_p(x_p, Σs[p]) ← Y[p, :])
+        return posterior(f_p(x_p, Σs[p]), Y[p, :])
     end
     return GPAR(fs_post)
 end

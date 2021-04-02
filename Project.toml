@@ -1,7 +1,7 @@
 name = "GPARs"
 uuid = "86ee5ac1-314e-4b70-9100-2b12109404ad"
-authors = ["WT <wt0881@my.bristol.ac.uk> and contributors"]
-version = "0.1.0"
+authors = ["Will Tebbutt and contributors"]
+version = "0.1.1"
 
 [deps]
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
@@ -10,4 +10,4 @@ Stheno = "8188c328-b5d6-583d-959b-9690869a5511"
 
 [compat]
 julia = "1.5"
-Stheno = "0.6"
+Stheno = "0.7"

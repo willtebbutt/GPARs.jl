@@ -4,7 +4,7 @@
     D_out = 3
 
     rng = MersenneTwister(123456)
-    f = GPAR([GP(EQ(), GPC()) for _ in 1:D_out])
+    f = GPAR([GP(SEKernel()) for _ in 1:D_out])
     x = ColVecs(randn(D_in, N))
     Σs = [rand(rng) + 0.1 for _ in 1:D_out]
 

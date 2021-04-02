@@ -1,7 +1,7 @@
 module GPARs
 
 using LinearAlgebra
-using Stheno
+using AbstractGPs
 using Random
 
 include("gpar.jl")

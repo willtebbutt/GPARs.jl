@@ -1,6 +1,6 @@
+using AbstractGPs
 using GPARs
 using Random
-using Stheno
 using Test
 
 using GPARs: posterior

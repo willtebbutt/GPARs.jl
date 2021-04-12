@@ -1,7 +1,7 @@
 module GPARs
 
-using LinearAlgebra
 using AbstractGPs
+using LinearAlgebra
 using Random
 
 include("gpar.jl")
